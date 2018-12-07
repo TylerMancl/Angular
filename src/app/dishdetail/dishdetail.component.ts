@@ -53,13 +53,14 @@ export class DishdetailComponent implements OnInit {
     },
   };
   dishservice: any;
+  commentForm: any;
   
 
   constructor(private dishService: DishService,
     @Inject('BaseURL') private BaseURL,
     private route: ActivatedRoute,
     private location: Location,
-    private fb: FormBuilder) {this.createForm();
+    private fb: FormBuilder) {
     
   }
 
@@ -109,22 +110,22 @@ export class DishdetailComponent implements OnInit {
   }
 
   onSubmit() {
-    const feedback = this.feedbackForm.value;
-    this.dish.comments.push({ ...feedback, date: new Date().toISOString() });
-    this.dishcopy.comments.push(this.comment);
+    this.comment = this.feedbackForm.value;
+    this.comment = {...this.feedbackForm.value, date: new Date().toISOString()};
+this.dishcopy.comments.push(this.comment);
     this.dishService.putDish(this.dishcopy)
       .subscribe(dish => {
-        this.dish = dish; this.dishcopy = dish;
-      },
-      errmess => { this.dish = null; this.dishcopy = null; this.errMess = errmess; });
+        this.dish = dish;  this.dishcopy = dish;
+    },
+    errmess => { this.dish = null; this.dishcopy = null; this.errMess = <any>errmess; });
     this.feedbackFormDirective.resetForm();
     this.feedbackForm.reset({
       author: '',
       rating: 5,
       comment: ''
     });
-    
-    
+  
+     
   }
 
 
