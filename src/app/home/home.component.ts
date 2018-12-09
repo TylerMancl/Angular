@@ -8,6 +8,7 @@ import { LeaderService } from '../services/leader.service';
 import { flyInOut, expand } from '../animations/app.animation';
 
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

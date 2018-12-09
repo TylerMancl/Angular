@@ -123,9 +123,7 @@ this.dishcopy.comments.push(this.comment);
       author: '',
       rating: 5,
       comment: ''
-    });
-  
-     
+    });  
   }
 
 
